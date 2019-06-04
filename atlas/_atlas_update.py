@@ -6,8 +6,10 @@ hostdir = os.path.dirname(__file__)
 atlas_info_filename = os.path.join(hostdir, "_atlas_info.json")
 atlas_pages_dirname = 'pages'
 atlas_pages_dir = os.path.join(hostdir, atlas_pages_dirname)
-atlas_url = 'https://github.com/rsbyrne/demonstration/tree/master/atlas'
+# atlas_url = 'https://github.com/rsbyrne/demonstration/tree/master/atlas'
+atlas_url = 'https://rsbyrne.github.io/demonstration/atlas'
 atlas_pages_url = os.path.join(atlas_url, atlas_pages_dirname)
+atlas_index_filename = os.path.join(hostdir, '..', 'index.html')
 
 def make_page(path):
     path_to_model = os.path.dirname(path)
@@ -30,6 +32,23 @@ def load_atlas_info():
         atlas_info = {'pages': []}
     return atlas_info
 
+def update_frontpage(atlas_info, atlas_index_filename):
+    text = '<html><body>'
+    text += '<p><h1>BGH Atlas prototype</h1></p>'
+    text += '<p><h2>MODELS</h2></p>'
+    for htmlpage in sorted(atlas_info['pages']):
+        modelname, ext = os.path.splitext(os.path.basename(htmlpage))
+        text += '<p>'
+        text += '<a href="'
+        text += htmlpage
+        text += '">'
+        text += modelname
+        text += '</a>'
+        text += '</p>'
+    text += '</body></html>'
+    with open(atlas_index_filename, 'w') as file:
+        file.write(text)
+
 def update_atlas():
     atlas_info = load_atlas_info()
     directories = os.listdir(atlas_pages_dir)
@@ -43,10 +62,11 @@ def update_atlas():
                 make_page(path_to_nb)
                 html_name = name + '.html'
                 page_filename = os.path.join(atlas_pages_dir, directory, html_name)
-                page_url = os.path.join(atlas_pages_url, directory, html_name),
+                page_url = os.path.join(atlas_pages_url, directory, html_name)
                 atlas_info['pages'].append(page_url)
                 break
         atlas_info['pages'] = sorted(set(atlas_info['pages']))
     save_atlas_info(atlas_info)
+    update_frontpage(atlas_info, atlas_index_filename)
 
 update_atlas()
