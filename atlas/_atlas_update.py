@@ -45,6 +45,15 @@ def update_frontpage(atlas_info, atlas_index_filename):
         text += modelname
         text += '</a>'
         text += '</p>'
+    text += '<p><h3>Contribute to the Atlas</h3></p>'
+    text += '<p>'
+    text += '<ol>'
+    text += '<li><a href="https://github.com/rsbyrne/demonstration">Clone the repository</a></li>'
+    text += '<li>Go to the "pages" directory and make a copy of the "example" folder</li>'
+    text += '<li>Open up the Jupyter notebook and follow the instructions (make sure to run the code at the bottom when you are finished!)</li>'
+    text += '<li>Push your changes back up to the repository</li>'
+    text += '</ol>'
+    text += '</p>'
     text += '</body></html>'
     with open(atlas_index_filename, 'w') as file:
         file.write(text)
