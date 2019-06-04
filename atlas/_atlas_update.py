@@ -2,8 +2,12 @@ import os
 import json
 
 hostdir = os.path.dirname(__file__)
+# docsdir = os.path.join(hostdir, '..', 'docs')
 atlas_info_filename = os.path.join(hostdir, "_atlas_info.json")
-atlas_pages_dir = os.path.join(hostdir, 'pages')
+atlas_pages_dirname = 'pages'
+atlas_pages_dir = os.path.join(hostdir, atlas_pages_dirname)
+atlas_url = 'https://github.com/rsbyrne/demonstration/tree/master/atlas'
+atlas_pages_url = os.path.join(atlas_url, atlas_pages_dirname)
 
 def make_page(path):
     path_to_model = os.path.dirname(path)
@@ -37,7 +41,10 @@ def update_atlas():
             if extension == '.ipynb':
                 path_to_nb = os.path.join(atlas_pages_dir, directory, filename)
                 make_page(path_to_nb)
-                atlas_info['pages'].append(name + '.html')
+                html_name = name + '.html'
+                page_filename = os.path.join(atlas_pages_dir, directory, html_name)
+                page_url = os.path.join(atlas_pages_url, directory, html_name),
+                atlas_info['pages'].append(page_url)
                 break
         atlas_info['pages'] = sorted(set(atlas_info['pages']))
     save_atlas_info(atlas_info)

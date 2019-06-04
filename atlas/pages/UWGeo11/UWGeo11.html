@@ -13112,6 +13112,22 @@ div#notebook {
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
+<!--
+!!! LEAVE THIS CELL UNALTERED !!!
+If things won't render nicely,
+check that the 'type' of this cell
+is set to 'Raw NBConvert'.
+This cell's job is to make
+all the other cells look nice.
+-->
+
+<script>
+    $(document).ready(
+        function(){
+            $('div.input').hide()
+            }
+        )
+</script>
 <style>
     div.cell{
         float:left;
@@ -13179,6 +13195,22 @@ div#notebook {
 
 </div>
 </div>
+</div><!--
+vvv Run the cell below when you're done! vvv
+-->
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>%%sh
+python ../../_atlas_update.py <span class="m">2</span>&gt;/dev/null
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
