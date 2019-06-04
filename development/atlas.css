@@ -1,0 +1,27 @@
+<style>
+    div.cell{
+        width: 50%;
+        float:left;
+    }
+</style>
+<style>
+    div.wide{
+        background-color: #fcf2f2;
+        width:100%;
+        float:left;
+    }
+</style>
+<style>
+    div.narrow{
+        background-color: #dFb5b4;
+        width:20%;
+        float:left;
+    }
+</style>
+<style>
+    div.right{
+        background-color: #dFb5b4;
+        width:20%;
+        float:right;
+    }
+</style>
