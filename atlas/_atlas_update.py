@@ -1,7 +1,8 @@
 import os
 import json
 
-hostdir = os.path.dirname(__file__)
+hostdir = os.path.abspath(os.path.dirname(__file__))
+calldir = os.getcwd()
 # docsdir = os.path.join(hostdir, '..', 'docs')
 atlas_info_filename = os.path.join(hostdir, "_atlas_info.json")
 atlas_pages_dirname = 'pages'
@@ -9,13 +10,15 @@ atlas_pages_dir = os.path.join(hostdir, atlas_pages_dirname)
 # atlas_url = 'https://github.com/rsbyrne/demonstration/tree/master/atlas'
 atlas_url = 'https://rsbyrne.github.io/demonstration/atlas'
 atlas_pages_url = os.path.join(atlas_url, atlas_pages_dirname)
-atlas_index_filename = os.path.join(hostdir, '..', 'index.html')
+atlas_index_filename = os.path.abspath(os.path.join(hostdir, '..', 'index.html'))
 
 def make_page(path):
     path_to_model = os.path.dirname(path)
     filename = os.path.basename(path)
-    command = 'jupyter nbconvert --to html ' + path
+    os.chdir(path_to_model)
+    command = 'jupyter nbconvert --to html ' + filename
     os.system(command)
+    os.chdir(calldir)
 
 def save_atlas_info(atlas_info):
     atlas_info_items = sorted(atlas_info.items())
