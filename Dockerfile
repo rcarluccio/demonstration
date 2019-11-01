@@ -1,4 +1,3 @@
 FROM underworldcode/uw2cylindrical:cylindrical
 
-# RUN git clone https://github.com/rsbyrne/demonstration.git
-COPY . /workspace
+RUN git clone https://github.com/rsbyrne/demonstration.git
